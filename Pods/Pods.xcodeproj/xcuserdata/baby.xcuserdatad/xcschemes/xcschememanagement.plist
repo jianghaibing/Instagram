@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>JSAnimatedImagesView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MSWeakTimer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -12,7 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1469924FC52F60B0068FA24EEFCB3EFC</key>
+		<key>35C72EF3D8D028D5B022FA26226F020F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>56EA48B98E4903A22D5838F05A69F96A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7071B3513286DE4DC067DCB35F6B6C20</key>
 		<dict>
 			<key>primary</key>
 			<true/>

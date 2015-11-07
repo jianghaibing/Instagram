@@ -8,13 +8,43 @@
 
 import UIKit
 
-class ISTabbarViewController: UITabBarController {
+class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
+
     }
     
-
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
+        
+        if tabBarController.selectedIndex == 2{
+            let imagePickerVC = UIImagePickerController()
+            imagePickerVC.delegate = self
+            imagePickerVC.navigationBar.tintColor = UIColor.whiteColor()
+            imagePickerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+            imagePickerVC.navigationBar.barTintColor = globalColor
+            viewController.presentViewController(imagePickerVC, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        self.dismissViewControllerAnimated(true) { () -> Void in
+            self.selectedIndex = 0
+            if let selectedViewController = self.selectedViewController {
+                let homeVC = selectedViewController.childViewControllers[0] as! HomeViewController
+                homeVC.imgArray.append(image)
+                homeVC.tableView.reloadData()
+            }
+        }
+        
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.selectedIndex = 0
+    }
+    
 
     /*
     // MARK: - Navigation

@@ -16,9 +16,8 @@ class ISTabBar: UITabBar {
         for (index,tabbarButton) in self.subviews.enumerate() {
             if index == 3 {
                 if tabbarButton.isKindOfClass(NSClassFromString("UITabBarButton")!){//用字符串转化成类获取类
-                    tabbarButton.subviews[0].backgroundColor = UIColor.grayColor()
+                    tabbarButton.subviews[0].backgroundColor = globalColor
                 }
-
             }
         }
     }
