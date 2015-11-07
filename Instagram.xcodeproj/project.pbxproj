@@ -21,6 +21,7 @@
 		096AE4FA1BEBA9AE00ECD6BD /* PodFile in Resources */ = {isa = PBXBuildFile; fileRef = 096AE4F91BEBA9AE00ECD6BD /* PodFile */; };
 		096AE5031BEBB1F600ECD6BD /* ISTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096AE5021BEBB1F600ECD6BD /* ISTabbarViewController.swift */; };
 		096AE5051BEBB7B100ECD6BD /* ISTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096AE5041BEBB7B100ECD6BD /* ISTabBar.swift */; };
+		098F170E1BEE590C0073CCFB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F170D1BEE590C0073CCFB /* ProfileViewController.swift */; };
 		B16EB4D05183A5851F84328B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B99DD259CE506F737208CC06 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		096AE4FB1BEBACCB00ECD6BD /* Instagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		096AE5021BEBB1F600ECD6BD /* ISTabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISTabbarViewController.swift; sourceTree = "<group>"; };
 		096AE5041BEBB7B100ECD6BD /* ISTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISTabBar.swift; sourceTree = "<group>"; };
+		098F170D1BEE590C0073CCFB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		234D21639A8C51A2FD39B8F8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		79A18E42A44AE1AE90F33AFF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B99DD259CE506F737208CC06 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +135,7 @@
 			children = (
 				0916A3301BED1CF200946EB1 /* LogIn */,
 				0916A32B1BED074500946EB1 /* Home */,
+				098F170B1BEE58E70073CCFB /* Profile */,
 				096AE4FE1BEBB17A00ECD6BD /* Public */,
 				0916A3261BECF6D100946EB1 /* Tool */,
 				096AE4E81BEBA8ED00ECD6BD /* Main.storyboard */,
@@ -178,6 +181,22 @@
 				096AE5041BEBB7B100ECD6BD /* ISTabBar.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		098F170B1BEE58E70073CCFB /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				098F170C1BEE58F60073CCFB /* Controller */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		098F170C1BEE58F60073CCFB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				098F170D1BEE590C0073CCFB /* ProfileViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		644A685A2CB62E40D4EC00E4 /* Pods */ = {
@@ -310,6 +329,7 @@
 				096AE5051BEBB7B100ECD6BD /* ISTabBar.swift in Sources */,
 				0916A3381BEE252A00946EB1 /* RegestViewController.swift in Sources */,
 				096AE4ED1BEBA8ED00ECD6BD /* Instagram.xcdatamodeld in Sources */,
+				098F170E1BEE590C0073CCFB /* ProfileViewController.swift in Sources */,
 				0916A32F1BED0B5200946EB1 /* PhotoCell.swift in Sources */,
 				096AE5031BEBB1F600ECD6BD /* ISTabbarViewController.swift in Sources */,
 				0916A32A1BECF79100946EB1 /* BaseNavgationController.swift in Sources */,

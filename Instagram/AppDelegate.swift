@@ -19,8 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         AVOSCloud.setApplicationId("C6Skwj4tFgTvvxvCPtL1N0M0", clientKey: "Bd5u6YpLnUkLSdDF33f8aCh9")
         AVAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-        
+        chooseRootViewController()
         return true
+    }
+    
+    func chooseRootViewController(){
+        let currentUser = AVUser.currentUser()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginVC = storyboard.instantiateViewControllerWithIdentifier("login")
+        let mainVC = storyboard.instantiateViewControllerWithIdentifier("mainVC")
+        if currentUser == nil {
+            window?.rootViewController = loginVC
+        }else{
+            window?.rootViewController = mainVC
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {

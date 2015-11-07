@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="D9b-kl-bph"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yxa-L4-XVW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -27,7 +27,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2N3-9y-XEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="867.5" y="981.5"/>
+            <point key="canvasLocation" x="803.5" y="1101.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="c8a-Mi-KaT">
@@ -49,7 +49,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bn-z6-dZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="867.5" y="1661.5"/>
+            <point key="canvasLocation" x="803.5" y="1838.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2vE-yK-N3a">
@@ -71,12 +71,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ch7-T3-rd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="56" y="2366"/>
+            <point key="canvasLocation" x="803.5" y="2587.5"/>
         </scene>
-        <!--View Controller-->
+        <!--个人中心-->
         <scene sceneID="HFy-Km-22F">
             <objects>
-                <viewController id="jQK-DK-Qo8" sceneMemberID="viewController">
+                <viewController id="jQK-DK-Qo8" customClass="ProfileViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FDW-tV-jhP"/>
                         <viewControllerLayoutGuide type="bottom" id="it9-ud-uWv"/>
@@ -84,16 +84,34 @@
                     <view key="view" contentMode="scaleToFill" id="ejo-tO-UPV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xW-cK-XFM">
+                                <rect key="frame" x="0.0" y="578" width="375" height="40"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.12941176469999999" green="0.1960784314" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="YbN-q8-ELG"/>
+                                </constraints>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="退出"/>
+                                <connections>
+                                    <segue destination="PZM-gm-wGe" kind="presentation" identifier="logout" animates="NO" id="6Y1-JH-Ehm"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6xW-cK-XFM" secondAttribute="trailing" id="CE3-oS-Pfq"/>
+                            <constraint firstItem="6xW-cK-XFM" firstAttribute="leading" secondItem="ejo-tO-UPV" secondAttribute="leading" id="R5m-f4-6Sa"/>
+                            <constraint firstItem="6xW-cK-XFM" firstAttribute="bottom" secondItem="it9-ud-uWv" secondAttribute="top" id="wiS-eZ-e6U"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="tabbar-profile-icon" selectedImage="tabbar-profile-icon-highlighted" id="Hvu-qV-iSB">
-                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
-                    </tabBarItem>
+                    <navigationItem key="navigationItem" title="个人中心" id="uAA-rW-euK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LXn-zz-p1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="56" y="3076"/>
+            <point key="canvasLocation" x="1390.5" y="3360.5"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="1Qd-9f-qaa">
@@ -305,8 +323,7 @@
                                                     <color key="titleColor" red="0.11764705882352941" green="0.17254901960784313" blue="0.396078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="regNext:" destination="PZM-gm-wGe" eventType="touchUpInside" id="Vy0-7D-TIE"/>
-                                                    <segue destination="iCC-eg-1fC" kind="show" id="5KE-kr-4ty"/>
+                                                    <segue destination="iCC-eg-1fC" kind="show" identifier="regester" id="5KE-kr-4ty"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入电子邮件" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WmS-LS-hxc">
@@ -376,18 +393,32 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eXC-sZ-QOa">
                                                         <rect key="frame" x="0.0" y="36" width="345" height="35"/>
                                                         <subviews>
-                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nto-Ug-naZ">
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nto-Ug-naZ">
                                                                 <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
                                                                 <animations/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                             </textField>
-                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BH7-lK-GUu">
+                                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BH7-lK-GUu">
                                                                 <rect key="frame" x="290" y="0.0" width="55" height="35"/>
                                                                 <animations/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
                                                                 <state key="normal" title="忘记密码"/>
+                                                                <connections>
+                                                                    <action selector="forgotPassword:" destination="PZM-gm-wGe" eventType="touchUpInside" id="gUE-Rr-0pv"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdW-X1-t0x" userLabel="login">
+                                                                <rect key="frame" x="345" y="0.0" width="0.0" height="35"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
+                                                                <state key="normal" title="登录"/>
+                                                                <connections>
+                                                                    <action selector="login:" destination="PZM-gm-wGe" eventType="touchUpInside" id="scm-ex-Mpl"/>
+                                                                    <action selector="loginButtonAction:" destination="PZM-gm-wGe" eventType="touchUpInside" id="Ifd-b6-jyl"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                         <animations/>
@@ -517,11 +548,16 @@
                         <outlet property="decLable" destination="Vg1-aj-d3d" id="hF2-Ta-0t1"/>
                         <outlet property="emailTextField" destination="WmS-LS-hxc" id="ePm-I3-cWL"/>
                         <outlet property="fbButton_reg" destination="fMv-49-lWZ" id="pJ1-Sa-rmF"/>
-                        <outlet property="loginButton" destination="1xS-z4-Tky" id="neT-3p-ilb"/>
+                        <outlet property="forgotPassword" destination="BH7-lK-GUu" id="E7r-hQ-RV1"/>
+                        <outlet property="loginActionButton" destination="kdW-X1-t0x" id="Bmz-jy-mHx"/>
+                        <outlet property="loginButton" destination="1xS-z4-Tky" id="sZp-Av-1xr"/>
                         <outlet property="loginView" destination="fKa-x6-K7H" id="5w3-3u-gm2"/>
                         <outlet property="nextButton" destination="eHn-zd-Bzb" id="ZGE-q0-e6y"/>
+                        <outlet property="passwordTextField" destination="nto-Ug-naZ" id="xhI-fs-3d9"/>
                         <outlet property="registerButton" destination="UN7-bM-Abo" id="eDN-Ot-4jV"/>
                         <outlet property="registerView" destination="seX-fl-aTE" id="uzK-yB-tR5"/>
+                        <outlet property="userNameTextField" destination="35C-np-SfS" id="aKL-SO-xBp"/>
+                        <segue destination="KNH-GU-OO5" kind="presentation" identifier="showHome" animates="NO" id="VEh-MV-obw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="814-ne-XNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -561,6 +597,9 @@
                                     </constraints>
                                     <color key="tintColor" red="0.12941176470588237" green="0.19607843137254902" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" image="addphoto-plus"/>
+                                    <connections>
+                                        <action selector="choosePhoto:" destination="iCC-eg-1fC" eventType="touchUpInside" id="zon-oG-IH5"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1张照片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7D-lu-lAV">
                                     <rect key="frame" x="154" y="310" width="68" height="21"/>
@@ -667,7 +706,7 @@
                                         <animations/>
                                         <inset key="separatorInset" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uKU-Mg-ath">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="uKU-Mg-ath">
                                         <rect key="frame" x="0.0" y="428" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uKU-Mg-ath" id="KeQ-Kv-qWr">
@@ -714,7 +753,7 @@
                                         <animations/>
                                         <inset key="separatorInset" minX="50" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vHM-kx-RRr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="vHM-kx-RRr">
                                         <rect key="frame" x="0.0" y="472" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vHM-kx-RRr" id="qTQ-LJ-6c0">
@@ -776,23 +815,31 @@
                                 <action selector="back:" destination="iCC-eg-1fC" id="u3b-pQ-kpB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="注册" id="cyv-r9-SvZ">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="注册" id="cyv-r9-SvZ">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="regiest:" destination="iCC-eg-1fC" id="p4o-xQ-Ssf"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="addPhotoButton" destination="6Tb-xn-GWe" id="kys-m4-76h"/>
+                        <outlet property="emailTextField" destination="laJ-FK-5f9" id="SyE-3t-cW2"/>
+                        <outlet property="passwordTextField" destination="JSf-NH-1O2" id="xen-tA-mWU"/>
+                        <outlet property="regestItem" destination="cyv-r9-SvZ" id="Oub-p9-geQ"/>
+                        <outlet property="userNameTextField" destination="91F-WO-dro" id="Faa-jd-UeK"/>
+                        <segue destination="KNH-GU-OO5" kind="presentation" identifier="singnUpSucessed" animates="NO" id="MSY-wX-Tjc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hB-xo-Ag4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-387.5" y="1511.5"/>
+            <point key="canvasLocation" x="-668.5" y="795.5"/>
         </scene>
         <!--Tabbar View Controller-->
         <scene sceneID="lvw-85-Hh0">
             <objects>
-                <tabBarController id="KNH-GU-OO5" customClass="ISTabbarViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainVC" id="KNH-GU-OO5" customClass="ISTabbarViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" autoresizesSubviews="NO" contentMode="scaleToFill" itemPositioning="fill" id="GdR-oX-Y1Z" customClass="ISTabBar" customModule="Instagram" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -807,7 +854,7 @@
                         <segue destination="FsG-Zk-kff" kind="relationship" relationship="viewControllers" id="3AH-w6-28N"/>
                         <segue destination="wb9-y9-8dJ" kind="relationship" relationship="viewControllers" id="ZAs-EG-PDA"/>
                         <segue destination="Ox2-D6-iBG" kind="relationship" relationship="viewControllers" id="X5N-RO-tls"/>
-                        <segue destination="jQK-DK-Qo8" kind="relationship" relationship="viewControllers" id="1ab-yT-216"/>
+                        <segue destination="HkY-bj-09X" kind="relationship" relationship="viewControllers" id="1ab-yT-216"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="80X-8A-gdS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -840,7 +887,7 @@
         <!--Base Navgation Controller-->
         <scene sceneID="0Pf-BI-Mbe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N4V-6b-JWj" customClass="BaseNavgationController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="login" automaticallyAdjustsScrollViewInsets="NO" id="N4V-6b-JWj" customClass="BaseNavgationController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4QF-9b-s4e">
@@ -856,6 +903,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iDI-8c-GbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1269.5" y="1511.5"/>
+        </scene>
+        <!--Base Navgation Controller-->
+        <scene sceneID="cXF-du-fuj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HkY-bj-09X" customClass="BaseNavgationController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="tabbar-profile-icon" selectedImage="tabbar-profile-icon-highlighted" id="Hvu-qV-iSB">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="feb-9W-3CL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jQK-DK-Qo8" kind="relationship" relationship="rootViewController" id="acz-Rc-j4L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Ue-cb-kyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803.5" y="3360.5"/>
         </scene>
     </scenes>
     <resources>
@@ -879,4 +948,8 @@
         <image name="tabsPeopleIcon" width="18" height="18"/>
         <image name="triangle" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="VEh-MV-obw"/>
+        <segue reference="6Y1-JH-Ehm"/>
+    </inferredMetricsTieBreakers>
 </document>

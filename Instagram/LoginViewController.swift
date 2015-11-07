@@ -19,6 +19,12 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var fbButton_reg: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var forgotPassword: UIButton!
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginActionButton: UIButton!
+    
+    var isLogout:Bool = false//如果是退出状态，设置tab到登录界面
 
     
     override func viewDidLoad() {
@@ -28,6 +34,11 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
         loginView.hidden = true
         emailTextField.becomeFirstResponder()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "emailTextDidChange:", name: UITextFieldTextDidChangeNotification, object: emailTextField)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "emailTextDidChange:", name: UITextFieldTextDidChangeNotification, object: passwordTextField)
+        
+        if isLogout {
+            login(loginButton)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -37,12 +48,23 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
     }
 
     func emailTextDidChange(noti:NSNotification){
+        if noti.object as! UITextField == emailTextField{
         if emailTextField.text == ""{
             fbButton_reg.hidden = false
             nextButton.hidden = true
         }else{
             fbButton_reg.hidden = true
             nextButton.hidden = false
+        }
+        }
+        if noti.object as! UITextField == passwordTextField{
+            if passwordTextField.text == "" {
+                forgotPassword.hidden = false
+                loginActionButton.hidden = true
+            }else {
+                forgotPassword.hidden = true
+                loginActionButton.hidden = false
+            }
         }
     }
     
@@ -73,16 +95,42 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
     @IBAction func fbLogin(sender: UIButton) {
     }
 
-    @IBAction func regNext(sender: UIButton) {
+    @IBAction func loginButtonAction(sender: UIButton) {
+        let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+        if sender.titleLabel?.text != ""{
+            AVUser.logInWithUsernameInBackground(userNameTextField.text, password: passwordTextField.text, block: { (user, error) -> Void in
+                if user != nil {
+                    hud.hide(true)
+                    self.performSegueWithIdentifier("showHome", sender: self)
+                }else {
+                    print(error)
+                    hud.hide(true)
+                    let errorHud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                    errorHud.mode = .Text
+                    errorHud.labelText = "用户名密码错误，请检查"
+                    errorHud.hide(true, afterDelay: 2)
+                }
+            })
+        }
     }
-    /*
+    @IBAction func forgotPassword(sender: UIButton) {
+       
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "regester"{
+        let regVC = segue.destinationViewController as! RegestViewController
+        regVC.emailSting = emailTextField.text!
+        }
     }
-    */
+    
 
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
 }

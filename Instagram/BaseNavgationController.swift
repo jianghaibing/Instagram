@@ -13,6 +13,7 @@ class BaseNavgationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.barTintColor = globalColor
+        UIApplication.sharedApplication().statusBarHidden = false
         // Do any additional setup after loading the view.
     }
 
