@@ -1,2 +1,3 @@
 pod 'AVOSCloud'
 pod 'JSAnimatedImagesView'
+pod 'MBProgressHUD'

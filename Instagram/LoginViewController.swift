@@ -16,19 +16,34 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
     @IBOutlet weak var decLable: UILabel!
     @IBOutlet weak var registerView: UIView!
     @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var fbButton_reg: UIButton!
+    @IBOutlet weak var emailTextField: UITextField!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().statusBarHidden = true
+        
         background.dataSource = self
         loginView.hidden = true
-       
+        emailTextField.becomeFirstResponder()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "emailTextDidChange:", name: UITextFieldTextDidChangeNotification, object: emailTextField)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.sharedApplication().statusBarHidden = true
+        self.navigationController?.navigationBarHidden = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func emailTextDidChange(noti:NSNotification){
+        if emailTextField.text == ""{
+            fbButton_reg.hidden = false
+            nextButton.hidden = true
+        }else{
+            fbButton_reg.hidden = true
+            nextButton.hidden = false
+        }
     }
     
     func animatedImagesNumberOfImages(animatedImagesView: JSAnimatedImagesView!) -> UInt {
@@ -44,6 +59,7 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
         decLable.text = "注册Instagram，分享精彩世界"
         registerView.hidden = false
         loginView.hidden = true
+        emailTextField.becomeFirstResponder()
     }
     
     @IBAction func login(sender: UIButton) {
@@ -51,9 +67,14 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
         decLable.text = "登录就能查看好友的照片和视频啦"
         registerView.hidden = true
         loginView.hidden = false
+        emailTextField.resignFirstResponder()
     }
     
+    @IBAction func fbLogin(sender: UIButton) {
+    }
 
+    @IBAction func regNext(sender: UIButton) {
+    }
     /*
     // MARK: - Navigation
 

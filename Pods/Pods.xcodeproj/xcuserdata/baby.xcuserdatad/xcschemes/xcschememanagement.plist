@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MSWeakTimer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>35C72EF3D8D028D5B022FA26226F020F</key>
+		<key>2CA920ADF732230A51771E2C2DC04EF2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>56EA48B98E4903A22D5838F05A69F96A</key>
+		<key>561B7CA3F51053DD0BA65629005950C1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7071B3513286DE4DC067DCB35F6B6C20</key>
+		<key>A937AA5E9F60F899CEBF9E315E09678D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB98BA8688258A33BC88A0BB1B7F1707</key>
 		<dict>
 			<key>primary</key>
 			<true/>
