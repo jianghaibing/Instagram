@@ -12,14 +12,14 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
     }
  
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "logout"{
             AVUser.logOut()
-            let loginVC = segue.destinationViewController as! LoginViewController
+            let loginVC = segue.destinationViewController.childViewControllers[0] as! LoginViewController
             loginVC.isLogout = true
         }
     }
