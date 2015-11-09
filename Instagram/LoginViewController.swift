@@ -85,7 +85,7 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
     }
     
     @IBAction func login(sender: UIButton) {
-        centerX.constant = loginButton.center.x - registerButton.center.x
+        centerX.constant = kScreenWidth / 2
         decLable.text = "登录就能查看好友的照片和视频啦"
         registerView.hidden = true
         loginView.hidden = false
