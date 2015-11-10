@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol FollowingCellDelegate{
+    func followingCellDidClicked(cell:FollowingCell)
+}
+
 class FollowingCell: UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var decLabel: UILabel!
-
+    @IBOutlet weak var followingButton: UIButton!
+    var delegate:FollowingCellDelegate!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         avatar.layer.cornerRadius = avatar.bounds.width / 2
@@ -25,6 +31,9 @@ class FollowingCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func following(sender: UIButton) {
+        if sender.state != .Selected{
+            delegate.followingCellDidClicked(self)
+        }
     }
 
     @IBAction func close(sender: UIButton) {

@@ -196,7 +196,9 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="tintColor" red="0.18823529410000001" green="0.41176470590000003" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                                         <state key="normal" title="关注" image="inbox-nav-glyph-plus" backgroundImage="megaphone_action_button_background"/>
+                                                        <state key="selected" title="已关注" image="blue-check" backgroundImage="megaphone_action_button_background"/>
                                                         <connections>
                                                             <action selector="following:" destination="j8B-e0-nT7" eventType="touchUpInside" id="ZBB-U4-yxr"/>
                                                         </connections>
@@ -240,6 +242,7 @@
                                             <connections>
                                                 <outlet property="avatar" destination="wB2-JH-ud2" id="j39-8B-xYV"/>
                                                 <outlet property="decLabel" destination="UCV-pB-qJP" id="7MB-A7-ptD"/>
+                                                <outlet property="followingButton" destination="OgJ-H2-u0p" id="ght-YH-KM6"/>
                                                 <outlet property="nameLabel" destination="aIu-ue-UqT" id="G6n-WC-b6M"/>
                                             </connections>
                                         </tableViewCell>
@@ -1275,6 +1278,7 @@
     <resources>
         <image name="addphoto-plus" width="73" height="73"/>
         <image name="back-arrow" width="10" height="17"/>
+        <image name="blue-check" width="16" height="12"/>
         <image name="close" width="24" height="24"/>
         <image name="cp-context-fb" width="12" height="12"/>
         <image name="direct" width="26" height="26"/>

@@ -76,11 +76,19 @@ A LeanCloud Framework User Object that is a local representation of a user persi
  */
 @property (nonatomic, retain) NSString *password;
 
-/// The email for the AVUser.
+/**
+ *  Email of the user. If enable "Enable Email Verification" option in the console, when register a user, will send a verification email to the user. Otherwise, only save the email to the server.
+ */
 @property (nonatomic, retain) NSString *email;
 
+/**
+ *  Mobile phone number of the user. Can be set when registering. If enable the "Enable Mobile Phone Number Verification" option in the console, when register a user, will send an sms message to the phone. Otherwise, only save the mobile phone number to the server.
+ */
 @property (nonatomic, strong) NSString *mobilePhoneNumber;
 
+/**
+ *  Mobile phone number verification flag. Read-only. if calling verifyMobilePhone:withBlock: succeeds, the server will set this value YES.
+ */
 @property (nonatomic, readonly) BOOL mobilePhoneVerified;
 
 /**
@@ -97,6 +105,9 @@ A LeanCloud Framework User Object that is a local representation of a user persi
 /*!
  *  请求手机号码验证
  *  发送短信到指定的手机上，内容有6位数字验证码。验证码10分钟内有效。
+ *  
+ *  @warning 对同一个手机号码，每天有 5 条数量的限制，并且发送间隔需要控制在一分钟。
+ *
  *  @param phoneNumber 11位电话号码
  *  @param block 回调结果
  */

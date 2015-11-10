@@ -44,6 +44,7 @@
 		098F173C1BEF4EB00073CCFB /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F17281BEF4EB00073CCFB /* View.swift */; };
 		098F173D1BEF4EB00073CCFB /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F17291BEF4EB00073CCFB /* ViewUtils.swift */; };
 		098F173F1BEF58680073CCFB /* HeaderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F173E1BEF58680073CCFB /* HeaderViewCell.swift */; };
+		09FBDAF41BF2445D00F7C232 /* ExtensionMBprogressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FBDAF31BF2445D00F7C232 /* ExtensionMBprogressHud.swift */; };
 		B16EB4D05183A5851F84328B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B99DD259CE506F737208CC06 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +63,7 @@
 		096AE4EE1BEBA8ED00ECD6BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		096AE4F11BEBA8ED00ECD6BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		096AE4F31BEBA8ED00ECD6BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		096AE4F91BEBA9AE00ECD6BD /* PodFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PodFile; sourceTree = "<group>"; };
+		096AE4F91BEBA9AE00ECD6BD /* PodFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PodFile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		096AE4FB1BEBACCB00ECD6BD /* Instagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		096AE5021BEBB1F600ECD6BD /* ISTabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISTabbarViewController.swift; sourceTree = "<group>"; };
 		096AE5041BEBB7B100ECD6BD /* ISTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISTabBar.swift; sourceTree = "<group>"; };
@@ -89,6 +90,7 @@
 		098F17281BEF4EB00073CCFB /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		098F17291BEF4EB00073CCFB /* ViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		098F173E1BEF58680073CCFB /* HeaderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderViewCell.swift; sourceTree = "<group>"; };
+		09FBDAF31BF2445D00F7C232 /* ExtensionMBprogressHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionMBprogressHud.swift; sourceTree = "<group>"; };
 		234D21639A8C51A2FD39B8F8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		79A18E42A44AE1AE90F33AFF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B99DD259CE506F737208CC06 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				0916A3271BECF6F200946EB1 /* Constant.swift */,
+				09FBDAF31BF2445D00F7C232 /* ExtensionMBprogressHud.swift */,
 			);
 			name = Tool;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				096AE4ED1BEBA8ED00ECD6BD /* Instagram.xcdatamodeld in Sources */,
 				098F172B1BEF4EB00073CCFB /* Coefficients.swift in Sources */,
 				098F170E1BEE590C0073CCFB /* ProfileViewController.swift in Sources */,
+				09FBDAF41BF2445D00F7C232 /* ExtensionMBprogressHud.swift in Sources */,
 				098F172F1BEF4EB00073CCFB /* ConstraintGroup.swift in Sources */,
 				098F173B1BEF4EB00073CCFB /* Size.swift in Sources */,
 				098F173A1BEF4EB00073CCFB /* Property.swift in Sources */,

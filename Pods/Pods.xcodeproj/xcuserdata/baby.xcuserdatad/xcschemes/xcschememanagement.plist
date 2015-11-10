@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MSWeakTimer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -24,25 +29,40 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2CA920ADF732230A51771E2C2DC04EF2</key>
+		<key>5352D432641F0656C90741034E32F31E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>561B7CA3F51053DD0BA65629005950C1</key>
+		<key>64E8DCED5A738A6DB7685C5A633F2511</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A937AA5E9F60F899CEBF9E315E09678D</key>
+		<key>7C6A6D9BF50A9E1FB42C35220475892C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CB98BA8688258A33BC88A0BB1B7F1707</key>
+		<key>80D46465BB594E4A379F4C381D6F9312</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>999624682B5CF59B3964DA94B61BD7C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F227F8F111CDE98CF136599407ED9734</key>
 		<dict>
 			<key>primary</key>
 			<true/>

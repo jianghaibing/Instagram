@@ -1,3 +1,5 @@
 pod 'AVOSCloud'
 pod 'JSAnimatedImagesView'
 pod 'MBProgressHUD'
+pod 'SDWebImage'
+pod 'MJRefresh'
