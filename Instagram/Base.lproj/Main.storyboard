@@ -1108,7 +1108,7 @@
                                                     <rect key="frame" x="51" y="7" width="316" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="peoplePrivateAccount" translatesAutoresizingMaskIntoConstraints="NO" id="39N-7w-t7a">
                                                     <rect key="frame" x="17" y="12" width="18" height="18"/>
@@ -1170,6 +1170,7 @@
                     <connections>
                         <outlet property="addPhotoButton" destination="6Tb-xn-GWe" id="kys-m4-76h"/>
                         <outlet property="emailTextField" destination="laJ-FK-5f9" id="SyE-3t-cW2"/>
+                        <outlet property="onePhotoLabel" destination="W7D-lu-lAV" id="SAs-hy-24G"/>
                         <outlet property="passwordTextField" destination="JSf-NH-1O2" id="xen-tA-mWU"/>
                         <outlet property="regestItem" destination="cyv-r9-SvZ" id="Oub-p9-geQ"/>
                         <outlet property="userNameTextField" destination="91F-WO-dro" id="Faa-jd-UeK"/>
