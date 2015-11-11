@@ -30,9 +30,14 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
     
     func requestUnfollowedUser(){
         
-        let query = AVUser.query()
-        query.whereKey("objectId", notEqualTo: AVUser.currentUser().objectId)
+        let followeeQuery = AVQuery(className: "Follow")
+        followeeQuery.whereKey("follower", equalTo: AVUser.currentUser().objectId)//查找当前用户关注的用户ID
         
+        let queryNotMe = AVUser.query()
+        queryNotMe.whereKey("objectId", notEqualTo: AVUser.currentUser().objectId)//查找非当前用户的ID
+        let quaryFollowee = AVUser.query()
+        quaryFollowee.whereKey("objectId", doesNotMatchKey: "following", inQuery: followeeQuery)//查找非关注的用户ID
+        let query = AVQuery.andQueryWithSubqueries([queryNotMe,quaryFollowee])//执行符合查找，并集
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 self.users = objects as? [AVUser]
@@ -73,9 +78,12 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             let cell = tableView.dequeueReusableCellWithIdentifier("following", forIndexPath: indexPath) as! FollowingCell
             if let users = users{
             let user = users[indexPath.row]
-            let imageFile = user["avatar"] as! AVFile
-            let url = imageFile.url
-            cell.avatar.sd_setImageWithURL(NSURL(string: url))
+            let imageFile = user["avatar"] as? AVFile
+                if let imageFile = imageFile{
+                    let url = imageFile.url
+                    cell.avatar.sd_setImageWithURL(NSURL(string: url))
+                }
+            
             cell.nameLabel.text = user.username
             }
             cell.delegate = self
@@ -111,13 +119,14 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         let indexPath = headerTableView.indexPathForCell(cell)
         let following = users![indexPath!.row]
         let follow = AVObject(className: "Follow")
-        follow["following"] = following
-        follow["follower"] = AVUser.currentUser()
+        follow["following"] = following.objectId
+        follow["follower"] = AVUser.currentUser().objectId
         follow.saveInBackgroundWithBlock { (sucessed, error) -> Void in
             if error == nil {
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     cell.followingButton.selected = true
                     cell.followingButton.tintColor = UIColor.greenColor()
+                    
                 })
             }else{
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
