@@ -9,7 +9,8 @@
 import UIKit
 
 protocol FollowingCellDelegate{
-    func followingCellDidClicked(cell:FollowingCell)
+    func followingButtonDidClicked(cell:FollowingCell)
+    func colseButtonClicked(cell:FollowingCell)
 }
 
 class FollowingCell: UITableViewCell {
@@ -32,10 +33,11 @@ class FollowingCell: UITableViewCell {
     }
     @IBAction func following(sender: UIButton) {
         if sender.state != .Selected{
-            delegate.followingCellDidClicked(self)
+            delegate.followingButtonDidClicked(self)
         }
     }
 
     @IBAction func close(sender: UIButton) {
+        delegate.colseButtonClicked(self)
     }
 }

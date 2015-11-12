@@ -14,6 +14,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
     @IBOutlet weak var headerTableView: UITableView!
     var users:[AVUser]?
     var avatars:[UIImageView]?
+    @IBOutlet weak var followingContentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +23,17 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         headerTableView.delegate = self
         headerTableView.dataSource = self
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { () -> Void in
+            if self.users == nil {
             self.requestUnfollowedUser()
+            }else{
+                self.tableView.mj_header.endRefreshing()
+            }
         })
         tableView.mj_header.beginRefreshing()
      
     }
     
+    //数据请求
     func requestUnfollowedUser(){
         
         let followeeQuery = AVQuery(className: "Follow")
@@ -38,11 +44,13 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         let quaryFollowee = AVUser.query()
         quaryFollowee.whereKey("objectId", doesNotMatchKey: "following", inQuery: followeeQuery)//查找非关注的用户ID
         let query = AVQuery.andQueryWithSubqueries([queryNotMe,quaryFollowee])//执行符合查找，并集
+        query.limit = 50
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 self.users = objects as? [AVUser]
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     self.tableView.mj_header.endRefreshing()
+                    self.layoutFollowingView()
                     self.headerTableView.reloadData()
                 })
             }else{
@@ -54,7 +62,23 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         }
         
     }
+    
+    func  layoutFollowingView(){
+        //设置底部关注视图的高度
+        if users == nil {
+            followingContentView.frame.size.height = 0
+        }else if users!.count == 1{
+            followingContentView.frame.size.height = 110
+        }else if users!.count == 2{
+            followingContentView.frame.size.height = 170
+        }else {
+            followingContentView.frame.size.height = 230
+        }
 
+    }
+
+    
+    //MARK: - tableViewDelegate
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if tableView == headerTableView {
             return 1
@@ -81,7 +105,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             let imageFile = user["avatar"] as? AVFile
                 if let imageFile = imageFile{
                     let url = imageFile.url
-                    cell.avatar.sd_setImageWithURL(NSURL(string: url))
+                    cell.avatar.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "anonymousUser"))
                 }
             
             cell.nameLabel.text = user.username
@@ -114,8 +138,9 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         }
     }
     
+    
     //MARK: - followingCellDelegate
-    func followingCellDidClicked(cell: FollowingCell) {
+    func followingButtonDidClicked(cell: FollowingCell) {
         let indexPath = headerTableView.indexPathForCell(cell)
         let following = users![indexPath!.row]
         let follow = AVObject(className: "Follow")
@@ -126,7 +151,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     cell.followingButton.selected = true
                     cell.followingButton.tintColor = UIColor.greenColor()
-                    
+                    self.performSelector("recovery:", withObject: cell, afterDelay: 2)
                 })
             }else{
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -134,6 +159,24 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
                 })
             }
         }
+    }
+    
+    func colseButtonClicked(cell: FollowingCell) {
+        
+    }
+    
+    func recovery(cell:FollowingCell){
+        let indexPath = headerTableView.indexPathForCell(cell)
+        if self.users?.count > 3{
+            self.users?[indexPath!.row] = self.users![3]
+            self.users?.removeAtIndex(3)
+            self.headerTableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Left)
+            cell.followingButton.selected = false
+            cell.followingButton.tintColor = globalColor
+            headerTableView.reloadData()
+
+        }
+        
     }
 }
 
