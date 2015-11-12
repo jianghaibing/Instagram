@@ -103,9 +103,11 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             if let users = users{
             let user = users[indexPath.row]
             let imageFile = user["avatar"] as? AVFile
-                if let imageFile = imageFile{
-                    let url = imageFile.url
-                    cell.avatar.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "anonymousUser"))
+            if let imageFile = imageFile{
+                let url = imageFile.url
+                cell.avatar.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "anonymousUser"))
+            }else{
+                cell.avatar.image = UIImage(named: "anonymousUser")
                 }
             
             cell.nameLabel.text = user.username
