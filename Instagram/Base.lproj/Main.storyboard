@@ -517,13 +517,34 @@
                                 <constraint firstAttribute="bottom" secondItem="ijb-l5-mSO" secondAttribute="bottom" id="pPm-A0-Ujb"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" image="direct" id="3T1-Fe-End">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="I4j-Cs-zpD">
+                            <view key="customView" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" id="b33-z4-4Ka">
+                                <rect key="frame" x="322" y="5" width="37" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZi-Fu-Rl4">
+                                        <rect key="frame" x="0.0" y="0.0" width="37" height="33"/>
+                                        <animations/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="direct"/>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IZi-Fu-Rl4" secondAttribute="trailing" id="G0h-f6-i2t"/>
+                                    <constraint firstItem="IZi-Fu-Rl4" firstAttribute="top" secondItem="b33-z4-4Ka" secondAttribute="top" id="Gay-mS-Axj"/>
+                                    <constraint firstItem="IZi-Fu-Rl4" firstAttribute="leading" secondItem="b33-z4-4Ka" secondAttribute="leading" id="mxH-d1-rxD"/>
+                                    <constraint firstAttribute="bottom" secondItem="IZi-Fu-Rl4" secondAttribute="bottom" id="wpw-ge-a3q"/>
+                                </constraints>
+                            </view>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="followingContentView" destination="yxS-Zo-Lys" id="j7k-8h-yeO"/>
                         <outlet property="headerTableView" destination="vyL-AN-qQK" id="c5n-02-CXP"/>
+                        <outlet property="rightItemView" destination="b33-z4-4Ka" id="1c0-86-yRA"/>
+                        <outlet property="titleView" destination="I6y-nP-0Fv" id="69z-4f-qPc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LY9-Tc-aVR" userLabel="First Responder" sceneMemberID="firstResponder"/>

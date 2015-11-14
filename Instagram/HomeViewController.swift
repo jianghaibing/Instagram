@@ -15,6 +15,8 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
     var users:[AVUser]?
     var avatars:[UIImageView]?
     @IBOutlet weak var followingContentView: UIView!
+    @IBOutlet weak var titleView: UIView!
+    @IBOutlet weak var rightItemView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             }
         })
         tableView.mj_header.beginRefreshing()
-     
+        
     }
     
     //数据请求
@@ -65,7 +67,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
     
     func  layoutFollowingView(){
         //设置底部关注视图的高度
-        if users == nil {
+        if users?.count ?? 0 == 0 {
             followingContentView.frame.size.height = 0
         }else if users!.count == 1{
             followingContentView.frame.size.height = 110
@@ -75,6 +77,11 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             followingContentView.frame.size.height = 230
         }
 
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        scrollViewDidScroll(tableView)
     }
 
     
@@ -180,5 +187,27 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         }
         
     }
+    
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let factor =  min(1, max(scrollView.contentOffset.y.distanceTo(0) / 64 , 0))
+        
+        self.navigationController?.navigationBar.frame.origin.y = 20 - 44 * (1 - factor)
+       
+        if factor == 0 {
+            scrollView.contentInset.top = 20
+            
+        }else if factor != 1{//防止在刷新过程中重新设置contentinset
+            scrollView.contentInset.top = 64
+        }
+        
+        titleView.frame.size = CGSizeMake(150 * factor * factor, 33 * factor * factor)
+        titleView.alpha = 1 * factor * factor
+        rightItemView.frame.size = CGSizeMake(37 * factor * factor, 33 * factor * factor)
+        rightItemView.alpha = 1 * factor * factor
+        
+    }
+    
 }
 
