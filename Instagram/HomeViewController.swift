@@ -17,6 +17,8 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
     @IBOutlet weak var followingContentView: UIView!
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var rightItemView: UIView!
+    @IBOutlet weak var rightButtonW: NSLayoutConstraint!
+    @IBOutlet weak var rightButtonH: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -204,7 +206,8 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         
         titleView.frame.size = CGSizeMake(150 * factor * factor, 33 * factor * factor)
         titleView.alpha = 1 * factor * factor
-        rightItemView.frame.size = CGSizeMake(37 * factor * factor, 33 * factor * factor)
+        rightButtonW.constant = 26 * factor * factor
+        rightButtonH.constant = 26 * factor * factor
         rightItemView.alpha = 1 * factor * factor
         
     }

@@ -10,6 +10,8 @@ import UIKit
 
 class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
 
+    var currentSelectedIndex:Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
@@ -17,14 +19,23 @@ class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,UINa
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        
+      
         if tabBarController.selectedIndex == 2{
             let imagePickerVC = UIImagePickerController()
             imagePickerVC.delegate = self
+//            imagePickerVC.sourceType = .Camera
+//            imagePickerVC.allowsEditing = true
+//            imagePickerVC.showsCameraControls = false
+//            let cameraOverlayVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("camera") as! PostPhotoViewController
+//            cameraOverlayVC.view.frame = imagePickerVC.cameraOverlayView!.frame
+//            imagePickerVC.cameraOverlayView = cameraOverlayVC.view
+        
             imagePickerVC.navigationBar.tintColor = UIColor.whiteColor()
             imagePickerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
             imagePickerVC.navigationBar.barTintColor = globalColor
             viewController.presentViewController(imagePickerVC, animated: true, completion: nil)
+        }else {
+            currentSelectedIndex = tabBarController.selectedIndex
         }
     }
     
@@ -42,7 +53,7 @@ class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,UINa
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
-        self.selectedIndex = 0
+        self.selectedIndex = currentSelectedIndex
     }
     
 

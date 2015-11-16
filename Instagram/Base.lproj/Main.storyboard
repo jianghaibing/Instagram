@@ -518,13 +518,17 @@
                             </constraints>
                         </view>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="I4j-Cs-zpD">
-                            <view key="customView" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" id="b33-z4-4Ka">
-                                <rect key="frame" x="322" y="5" width="37" height="33"/>
+                            <view key="customView" contentMode="scaleToFill" id="b33-z4-4Ka">
+                                <rect key="frame" x="333" y="9" width="26" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IZi-Fu-Rl4">
-                                        <rect key="frame" x="0.0" y="0.0" width="37" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="26" id="ZjZ-yt-Rp3"/>
+                                            <constraint firstAttribute="height" constant="26" id="lFh-mJ-zLZ"/>
+                                        </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="direct"/>
                                     </button>
@@ -532,10 +536,8 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="IZi-Fu-Rl4" secondAttribute="trailing" id="G0h-f6-i2t"/>
-                                    <constraint firstItem="IZi-Fu-Rl4" firstAttribute="top" secondItem="b33-z4-4Ka" secondAttribute="top" id="Gay-mS-Axj"/>
-                                    <constraint firstItem="IZi-Fu-Rl4" firstAttribute="leading" secondItem="b33-z4-4Ka" secondAttribute="leading" id="mxH-d1-rxD"/>
-                                    <constraint firstAttribute="bottom" secondItem="IZi-Fu-Rl4" secondAttribute="bottom" id="wpw-ge-a3q"/>
+                                    <constraint firstItem="IZi-Fu-Rl4" firstAttribute="centerX" secondItem="b33-z4-4Ka" secondAttribute="centerX" id="LWQ-zu-UcJ"/>
+                                    <constraint firstItem="IZi-Fu-Rl4" firstAttribute="centerY" secondItem="b33-z4-4Ka" secondAttribute="centerY" id="mSO-wz-XEe"/>
                                 </constraints>
                             </view>
                         </barButtonItem>
@@ -543,6 +545,8 @@
                     <connections>
                         <outlet property="followingContentView" destination="yxS-Zo-Lys" id="j7k-8h-yeO"/>
                         <outlet property="headerTableView" destination="vyL-AN-qQK" id="c5n-02-CXP"/>
+                        <outlet property="rightButtonH" destination="lFh-mJ-zLZ" id="NKR-Fc-hAR"/>
+                        <outlet property="rightButtonW" destination="ZjZ-yt-Rp3" id="xyb-5a-v9V"/>
                         <outlet property="rightItemView" destination="b33-z4-4Ka" id="1c0-86-yRA"/>
                         <outlet property="titleView" destination="I6y-nP-0Fv" id="69z-4f-qPc"/>
                     </connections>
@@ -550,6 +554,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LY9-Tc-aVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="811.5" y="320.5"/>
+        </scene>
+        <!--Post Photo View Controller-->
+        <scene sceneID="tzB-wv-0Cn">
+            <objects>
+                <viewController storyboardIdentifier="camera" id="efD-QZ-dVO" customClass="PostPhotoViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zbQ-EG-6Ms"/>
+                        <viewControllerLayoutGuide type="bottom" id="SFf-b4-vQJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5GW-M0-dpr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NM-Tb-YKO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.41176470590000003" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="VfP-cO-5sA"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="niw-V7-3vR">
+                                <rect key="frame" x="164" y="598" width="46" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="JyV-gk-Xkf"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1NM-Tb-YKO" firstAttribute="leading" secondItem="5GW-M0-dpr" secondAttribute="leading" id="Bw7-n1-5MB"/>
+                            <constraint firstItem="niw-V7-3vR" firstAttribute="leading" secondItem="5GW-M0-dpr" secondAttribute="leading" constant="164" id="MUA-dA-50I"/>
+                            <constraint firstAttribute="trailing" secondItem="1NM-Tb-YKO" secondAttribute="trailing" id="U5M-TH-4iT"/>
+                            <constraint firstItem="SFf-b4-vQJ" firstAttribute="top" secondItem="niw-V7-3vR" secondAttribute="bottom" constant="39" id="mtr-EO-NUh"/>
+                            <constraint firstAttribute="trailing" secondItem="niw-V7-3vR" secondAttribute="trailing" constant="165" id="qZb-WA-cd0"/>
+                            <constraint firstItem="1NM-Tb-YKO" firstAttribute="top" secondItem="5GW-M0-dpr" secondAttribute="top" id="ty3-Cb-9ja"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gAO-sC-Zzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266.5" y="320.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="khv-DG-Cuf">
