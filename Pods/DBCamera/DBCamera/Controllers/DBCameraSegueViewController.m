@@ -61,7 +61,7 @@ static const CGSize kFilterCellSize = { 75, 90 };
         [self initVignetteFilter];
         
         _cropArray = @[ @320, @213, @240, @192, @180 ];
-        _filtersList = @[ @"普通", @"复古", @"amaro", @"灰色", @"hudson", @"mayfair", @"nashville", @"valencia", @"深灰", @"vignette" ];
+        _filtersList = @[ @"普通", @"复古", @"亮丽", @"灰色", @"清凉", @"平和", @"唯美", @"活力", @"深灰", @"光晕" ];
         
         NSBundle *bundle = [NSBundle bundleForClass:self.class];
         NSURL *filter1977      = [NSURL fileURLWithPath:[bundle pathForResource:@"1977"      ofType:@"acv"]];

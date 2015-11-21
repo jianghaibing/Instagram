@@ -85,7 +85,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         quaryMePost.whereKey("postUserID", equalTo: AVUser.currentUser().objectId)
         
         let query = AVQuery.orQueryWithSubqueries([quaryFolloweePost,quaryMePost])//执行符合查找,并集
-        query.limit = 3
+        query.limit = 15
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil{
@@ -119,7 +119,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         quaryMePost.whereKey("postUserID", equalTo: AVUser.currentUser().objectId)
         
         let query = AVQuery.orQueryWithSubqueries([quaryFolloweePost,quaryMePost])//执行符合查找,并集
-        query.limit = 3
+        query.limit = 15
         query.skip = posts?.count ?? 0
         query.orderByDescending("createdAt")
 
