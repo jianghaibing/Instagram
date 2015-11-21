@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UITableViewController,FollowingCellDelegate {
 
-    var imgArray:[UIImage] = []
+    var posts:[AVObject]?
     @IBOutlet weak var headerTableView: UITableView!
     var users:[AVUser]?
     var avatars:[UIImageView]?
@@ -32,8 +32,14 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             }else{
                 self.tableView.mj_header.endRefreshing()
             }
+            
+            self.requestNewPost()
         })
         tableView.mj_header.beginRefreshing()
+        
+        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { () -> Void in
+            self.requestMorePost()
+        })
         
     }
     
@@ -47,7 +53,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         queryNotMe.whereKey("objectId", notEqualTo: AVUser.currentUser().objectId)//查找非当前用户的ID
         let quaryFollowee = AVUser.query()
         quaryFollowee.whereKey("objectId", doesNotMatchKey: "following", inQuery: followeeQuery)//查找非关注的用户ID
-        let query = AVQuery.andQueryWithSubqueries([queryNotMe,quaryFollowee])//执行符合查找，并集
+        let query = AVQuery.andQueryWithSubqueries([queryNotMe,quaryFollowee])//执行符合查找，交集
         query.limit = 50
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
@@ -65,6 +71,86 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             }
         }
         
+    }
+    
+    func requestNewPost(){
+        let followeeQuery = AVQuery(className: "Follow")
+        followeeQuery.whereKey("follower", equalTo: AVUser.currentUser().objectId)//查找当前用户关注的用户ID
+        
+        
+        let quaryFolloweePost = AVQuery(className: "Post")
+        quaryFolloweePost.whereKey("postUserID", matchesKey: "following", inQuery: followeeQuery)//用关注者查Post表
+        
+        let quaryMePost = AVQuery(className: "Post")
+        quaryMePost.whereKey("postUserID", equalTo: AVUser.currentUser().objectId)
+        
+        let query = AVQuery.orQueryWithSubqueries([quaryFolloweePost,quaryMePost])//执行符合查找,并集
+        query.limit = 3
+        query.orderByDescending("createdAt")
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil{
+                
+                self.posts = objects as? [AVObject]
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    self.tableView.mj_header.endRefreshing()
+                    self.tableView.reloadData()
+                })
+                
+                
+            }else{
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    self.tableView.mj_header.endRefreshing()
+                    MBProgressHUD.showErrortoView(self.view, with: error.localizedDescription)
+                })
+            }
+        }
+
+    }
+    
+    func requestMorePost(){
+        let followeeQuery = AVQuery(className: "Follow")
+        followeeQuery.whereKey("follower", equalTo: AVUser.currentUser().objectId)//查找当前用户关注的用户ID
+        
+        
+        let quaryFolloweePost = AVQuery(className: "Post")
+        quaryFolloweePost.whereKey("postUserID", matchesKey: "following", inQuery: followeeQuery)//用关注者查Post表
+        
+        let quaryMePost = AVQuery(className: "Post")
+        quaryMePost.whereKey("postUserID", equalTo: AVUser.currentUser().objectId)
+        
+        let query = AVQuery.orQueryWithSubqueries([quaryFolloweePost,quaryMePost])//执行符合查找,并集
+        query.limit = 3
+        query.skip = posts?.count ?? 0
+        query.orderByDescending("createdAt")
+
+        query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
+            if error == nil{
+                if objects.count == 0 {
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        MBProgressHUD.showErrortoView(self.view.window!, with: "没有更多图片了")
+                        self.tableView.mj_footer.endRefreshing()
+                    })
+                    return
+                }
+                
+                let objects = objects as! [AVObject]
+                if self.posts != nil {
+                   self.posts! += objects
+                }
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    self.tableView.mj_footer.endRefreshing()
+                    self.tableView.reloadData()
+                })
+                
+                
+            }else{
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    self.tableView.mj_footer.endRefreshing()
+                    MBProgressHUD.showErrortoView(self.view, with: error.localizedDescription)
+                })
+            }
+        }
     }
     
     func  layoutFollowingView(){
@@ -92,7 +178,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         if tableView == headerTableView {
             return 1
         }else{
-            return imgArray.count
+            return posts?.count ?? 0
         }
         
     }
@@ -125,7 +211,13 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             return cell
         }else{
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PhotoCell
-        cell.photoView.image = imgArray[indexPath.section]
+            if let posts = posts {
+                let post = posts[indexPath.section]
+                let imageFile = post["postImage"] as! AVFile
+                let url = imageFile.url
+                cell.photoView.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "photoPlaceImage"))
+            }
+            
         return cell
         }
     }

@@ -12,16 +12,9 @@ FOUNDATION_EXPORT double AVOSCloudVersionNumber;
 //! Project version string for AVOSCloud.
 FOUNDATION_EXPORT const unsigned char AVOSCloudVersionString[];
 
-// Version
-#define AVOSCLOUD_VERSION @"1.0.0"
-
-extern NSInteger const AVOSCLOUD_API_VERSION;
-
 // Platform
 #define AVOS_IOS_ONLY (TARGET_OS_IPHONE)
 #define AVOS_OSX_ONLY (TARGET_OS_MAC && !(TARGET_OS_IPHONE))
-
-extern NSString *const kPFDeviceType;
 
 #if AVOS_IOS_ONLY
 #import <UIKit/UIKit.h>

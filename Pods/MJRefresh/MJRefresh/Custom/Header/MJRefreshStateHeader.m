@@ -53,6 +53,14 @@
     self.stateLabel.text = self.stateTitles[@(self.state)];
 }
 
+#pragma mark - 日历获取在9.x之后的系统使用currentCalendar会出异常。在8.0之后使用系统新API。
+- (NSCalendar *)currentCalendar {
+    if ([NSCalendar respondsToSelector:@selector(calendarWithIdentifier:)]) {
+        return [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    }
+    return [NSCalendar currentCalendar];
+}
+
 #pragma mark key的处理
 - (void)setLastUpdatedTimeKey:(NSString *)lastUpdatedTimeKey
 {
@@ -68,7 +76,7 @@
     
     if (lastUpdatedTime) {
         // 1.获得年月日
-        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSCalendar *calendar = [self currentCalendar];
         NSUInteger unitFlags = NSCalendarUnitYear| NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitHour |NSCalendarUnitMinute;
         NSDateComponents *cmp1 = [calendar components:unitFlags fromDate:lastUpdatedTime];
         NSDateComponents *cmp2 = [calendar components:unitFlags fromDate:[NSDate date]];
@@ -108,21 +116,28 @@
     
     if (self.stateLabel.hidden) return;
     
+    BOOL noConstrainsOnStatusLabel = self.stateLabel.constraints.count == 0;
+    
     if (self.lastUpdatedTimeLabel.hidden) {
         // 状态
-        self.stateLabel.frame = self.bounds;
+        if (noConstrainsOnStatusLabel) self.stateLabel.frame = self.bounds;
     } else {
+        CGFloat stateLabelH = self.mj_h * 0.5;
         // 状态
-        self.stateLabel.mj_x = 0;
-        self.stateLabel.mj_y = 0;
-        self.stateLabel.mj_w = self.mj_w;
-        self.stateLabel.mj_h = self.mj_h * 0.5;
+        if (noConstrainsOnStatusLabel) {
+            self.stateLabel.mj_x = 0;
+            self.stateLabel.mj_y = 0;
+            self.stateLabel.mj_w = self.mj_w;
+            self.stateLabel.mj_h = stateLabelH;
+        }
         
         // 更新时间
-        self.lastUpdatedTimeLabel.mj_x = 0;
-        self.lastUpdatedTimeLabel.mj_y = self.stateLabel.mj_h;
-        self.lastUpdatedTimeLabel.mj_w = self.mj_w;
-        self.lastUpdatedTimeLabel.mj_h = self.mj_h - self.lastUpdatedTimeLabel.mj_y;
+        if (self.lastUpdatedTimeLabel.constraints.count == 0) {
+            self.lastUpdatedTimeLabel.mj_x = 0;
+            self.lastUpdatedTimeLabel.mj_y = stateLabelH;
+            self.lastUpdatedTimeLabel.mj_w = self.mj_w;
+            self.lastUpdatedTimeLabel.mj_h = self.mj_h - self.lastUpdatedTimeLabel.mj_y;
+        }
     }
 }
 

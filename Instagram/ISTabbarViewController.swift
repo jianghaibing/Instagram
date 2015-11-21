@@ -8,55 +8,81 @@
 
 import UIKit
 
-class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate {
+class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,DBCameraViewControllerDelegate {
 
     var currentSelectedIndex:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
 
+        self.delegate = self
     }
     
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
       
         if tabBarController.selectedIndex == 2{
-            let imagePickerVC = UIImagePickerController()
-            imagePickerVC.delegate = self
-//            imagePickerVC.sourceType = .Camera
-//            imagePickerVC.allowsEditing = true
-//            imagePickerVC.showsCameraControls = false
-//            let cameraOverlayVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("camera") as! PostPhotoViewController
-//            cameraOverlayVC.view.frame = imagePickerVC.cameraOverlayView!.frame
-//            imagePickerVC.cameraOverlayView = cameraOverlayVC.view
-        
-            imagePickerVC.navigationBar.tintColor = UIColor.whiteColor()
-            imagePickerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-            imagePickerVC.navigationBar.barTintColor = globalColor
-            viewController.presentViewController(imagePickerVC, animated: true, completion: nil)
+            let cameraContainer = DBCameraContainerViewController(delegate: self)
+            cameraContainer.setFullScreenMode()
+            let nav = BaseNavgationController(rootViewController: cameraContainer)
+            nav.navigationBarHidden = true
+            UIApplication.sharedApplication().statusBarHidden = true
+            viewController.presentViewController(nav, animated: true, completion: nil)
         }else {
             currentSelectedIndex = tabBarController.selectedIndex
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        self.dismissViewControllerAnimated(true) { () -> Void in
-            self.selectedIndex = 0
-            if let selectedViewController = self.selectedViewController {
-                let homeVC = selectedViewController.childViewControllers[0] as! HomeViewController
-                homeVC.imgArray.append(image)
-                homeVC.tableView.reloadData()
-            }
-        }
+
+    func camera(cameraViewController: AnyObject!, didFinishWithImage image: UIImage!, withMetadata metadata: [NSObject : AnyObject]!) {
+        let post = AVObject(className: "Post")
+        post["postUserID"] = AVUser.currentUser().objectId
         
-    }
+        
+        let imageData = UIImageJPEGRepresentation(image, 0.7)
+        let imageFile = AVFile(name: "post.jpg", data: imageData)
+        let hud = MBProgressHUD.showHUDAddedTo(cameraViewController.view, animated: true)
+        imageFile!.saveInBackgroundWithBlock({ (sucessed, error) -> Void in
+            if sucessed == true {
+                
+                post["postImage"] = imageFile
+                
+                post.saveInBackgroundWithBlock({ (sucessed, error) -> Void in
+                    if error == nil{
+                       
+                        UIApplication.sharedApplication().statusBarHidden = false
+                        self.selectedIndex = 0
+                        if let selectedViewController = self.selectedViewController {
+                            let homeVC = selectedViewController.childViewControllers[0] as! HomeViewController
+                            hud.hide(true)
+                            homeVC.requestNewPost()
+                            homeVC.tableView.reloadData()
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                       
+                    }else{
+                        hud.hide(true)
+                        MBProgressHUD.showErrortoView((cameraViewController?.view)!, with: error.localizedDescription)
+                    }
+                })
+                
+            }else{
+                hud.hide(true)
+                MBProgressHUD.showErrortoView((cameraViewController?.view)!, with: error.localizedDescription)
+                
+            }
+        })
+        
+        
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    }
+
+    func dismissCamera(cameraViewController: AnyObject!) {
+        UIApplication.sharedApplication().statusBarHidden = false
         self.dismissViewControllerAnimated(true, completion: nil)
         self.selectedIndex = currentSelectedIndex
+
     }
     
-
     /*
     // MARK: - Navigation
 

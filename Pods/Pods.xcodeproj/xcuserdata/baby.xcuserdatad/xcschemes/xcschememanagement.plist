@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DBCamera.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GPUImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JSAnimatedImagesView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,27 +52,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>64E8DCED5A738A6DB7685C5A633F2511</key>
+		<key>63B84225745A871D14078C89CAE85523</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C6A6D9BF50A9E1FB42C35220475892C</key>
+		<key>6AB12A9CB25345384752462E487007A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80D46465BB594E4A379F4C381D6F9312</key>
+		<key>7AA5C79F8028584F0A6B2E7E818AB6A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>999624682B5CF59B3964DA94B61BD7C7</key>
+		<key>87AED8373BDB53DD92ECE9D54974E370</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F227F8F111CDE98CF136599407ED9734</key>
+		<key>A514F6A28AD9CC434B16A2D75005BB73</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F66BD3B4DDDB0630E9A70E2655BCD6F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6F69054E2432829015D41A7CDE0DD76</key>
 		<dict>
 			<key>primary</key>
 			<true/>

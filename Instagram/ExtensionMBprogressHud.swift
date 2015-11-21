@@ -13,6 +13,7 @@ extension MBProgressHUD {
     class func showErrortoView(view:UIView, with errorInfo:String){
         let errorHud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         errorHud.mode = .Text
+        errorHud.yOffset = 200
         errorHud.labelText = errorInfo
         errorHud.hide(true, afterDelay: 2)
     }

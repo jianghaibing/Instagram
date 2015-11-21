@@ -65,10 +65,7 @@ class RegestViewController: UITableViewController,UIImagePickerControllerDelegat
             }else{
                 print(error)
                 hud.hide(true)
-                let errorHud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-                errorHud.mode = .Text
-                errorHud.labelText = error.localizedDescription
-                errorHud.hide(true, afterDelay: 2)
+                MBProgressHUD.showErrortoView(self.view, with: error.localizedDescription)
             }
         }
         
@@ -124,10 +121,7 @@ class RegestViewController: UITableViewController,UIImagePickerControllerDelegat
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }else{
                     hud.hide(true)
-                    let errorHud = MBProgressHUD.showHUDAddedTo(picker.view, animated: true)
-                    errorHud.mode = .Text
-                    errorHud.labelText = error.localizedDescription
-                    errorHud.hide(true, afterDelay: 2)
+                    MBProgressHUD.showErrortoView(picker.view, with: error.localizedDescription)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
             })

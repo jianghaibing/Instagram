@@ -105,10 +105,7 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
                 }else {
                     print(error)
                     hud.hide(true)
-                    let errorHud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-                    errorHud.mode = .Text
-                    errorHud.labelText = "用户名密码错误，请检查"
-                    errorHud.hide(true, afterDelay: 2)
+                    MBProgressHUD.showErrortoView(self.view, with: error.localizedDescription)
                 }
             })
         }

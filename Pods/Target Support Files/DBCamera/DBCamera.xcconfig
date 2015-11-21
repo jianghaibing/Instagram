@@ -1,0 +1,1 @@
+DBCAMERA_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreMedia" -framework "QuartzCore"
