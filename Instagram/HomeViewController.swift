@@ -56,6 +56,9 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         quaryFollowee.whereKey("objectId", doesNotMatchKey: "following", inQuery: followeeQuery)//查找非关注的用户ID
         let query = AVQuery.andQueryWithSubqueries([queryNotMe,quaryFollowee])//执行符合查找，交集
         query.limit = 50
+        query.cachePolicy = .NetworkElseCache
+        query.maxCacheAge = 24*3600*30
+        
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil {
                 self.users = objects as? [AVUser]
@@ -78,7 +81,6 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         let followeeQuery = AVQuery(className: "Follow")
         followeeQuery.whereKey("follower", equalTo: AVUser.currentUser().objectId)//查找当前用户关注的用户ID
         
-        
         let quaryFolloweePost = AVQuery(className: "Post")
         quaryFolloweePost.whereKey("postUserID", matchesKey: "following", inQuery: followeeQuery)//用关注者查Post表
         
@@ -88,14 +90,18 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         let query = AVQuery.orQueryWithSubqueries([quaryFolloweePost,quaryMePost])//执行符合查找,并集
         query.limit = 15
         query.orderByDescending("createdAt")
+        query.cachePolicy = .NetworkElseCache//排序需在缓冲前面调用
+        query.maxCacheAge = 24*3600*30
+        print(query.hasCachedResult())
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil{
-                self.postUsers.removeAll(keepCapacity: true)
                 if let objects = objects as? [AVObject]{
                 self.posts = objects
                 for post in objects {
                     let postUserID = post["postUserID"] as! String
                     let query = AVUser.query()
+                    query.cachePolicy = .NetworkElseCache
+                    query.maxCacheAge = 24*3600*30
                     let user = query.getObjectWithId(postUserID) as! AVUser
                     self.postUsers.append(user)
                 }
@@ -131,7 +137,8 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         query.limit = 15
         query.skip = posts?.count ?? 0
         query.orderByDescending("createdAt")
-
+        query.cachePolicy = .NetworkElseCache
+        query.maxCacheAge = 24*3600*30
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil{
                 if objects.count == 0 {
@@ -149,6 +156,8 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
                     for post in objects {
                         let postUserID = post["postUserID"] as! String
                         let query = AVUser.query()
+                        query.cachePolicy = .NetworkElseCache
+                        query.maxCacheAge = 24*3600*30
                         let user = query.getObjectWithId(postUserID) as! AVUser
                         self.postUsers.append(user)
                     }
@@ -248,6 +257,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             let header = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! HeaderViewCell
             if let posts = posts{
                 let post = posts[section]
+                
                 let user = postUsers[section]
                 
                 let imageFile = user["avatar"] as? AVFile

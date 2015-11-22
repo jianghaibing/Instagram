@@ -12,9 +12,6 @@ class StringConvertTool: NSObject {
     
     class func dateStringConverter(date:NSDate) -> String {
         let df = NSDateFormatter()
-//        df.dateFormat = "EEE MMM dd HH:mm:ss zzz yyyy"
-//        df.locale = NSLocale(localeIdentifier: "en_US")
-//        let date = df.dateFromString(oldString)
         let now = NSDate()
         
         let createdYear = NSCalendar.currentCalendar().component(NSCalendarUnit.Year, fromDate: date)
