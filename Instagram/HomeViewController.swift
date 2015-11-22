@@ -92,18 +92,15 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         query.orderByDescending("createdAt")
         query.cachePolicy = .NetworkElseCache//排序需在缓冲前面调用
         query.maxCacheAge = 24*3600*30
-        print(query.hasCachedResult())
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil{
+                self.postUsers.removeAll(keepCapacity: true)
                 if let objects = objects as? [AVObject]{
                 self.posts = objects
                 for post in objects {
-                    let postUserID = post["postUserID"] as! String
-                    let query = AVUser.query()
-                    query.cachePolicy = .NetworkElseCache
-                    query.maxCacheAge = 24*3600*30
-                    let user = query.getObjectWithId(postUserID) as! AVUser
-                    self.postUsers.append(user)
+                    var postUser = post["postUser"] as! AVUser
+                    postUser = postUser.fetchIfNeeded() as! AVUser
+                    self.postUsers.append(postUser)
                 }
                 }
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -154,12 +151,9 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
                 if self.posts != nil {
                    self.posts! += objects
                     for post in objects {
-                        let postUserID = post["postUserID"] as! String
-                        let query = AVUser.query()
-                        query.cachePolicy = .NetworkElseCache
-                        query.maxCacheAge = 24*3600*30
-                        let user = query.getObjectWithId(postUserID) as! AVUser
-                        self.postUsers.append(user)
+                        var postUser = post["postUser"] as! AVUser
+                        postUser = postUser.fetchIfNeeded() as! AVUser
+                        self.postUsers.append(postUser)
                     }
 
                 }
@@ -168,7 +162,6 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
                     self.tableView.mj_footer.endRefreshing()
                     self.tableView.reloadData()
                 })
-                
                 
             }else{
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in

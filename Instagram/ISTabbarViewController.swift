@@ -44,6 +44,7 @@ class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,DBCa
             if sucessed == true {
                 
                 post["postImage"] = imageFile
+                post["postUser"] = AVUser.currentUser()
                 
                 post.saveInBackgroundWithBlock({ (sucessed, error) -> Void in
                     if error == nil{
