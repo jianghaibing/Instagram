@@ -286,7 +286,7 @@ static const CGSize kFilterCellSize = { 75, 90 };
 {
     if ( !_useButton ) {
         _useButton = [self baseButton];
-        [_useButton setTitle:@"发布" forState:UIControlStateNormal];
+        [_useButton setTitle:@"使用" forState:UIControlStateNormal];
         _useButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_useButton.titleLabel sizeToFit];
         [_useButton sizeToFit];

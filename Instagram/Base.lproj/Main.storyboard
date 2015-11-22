@@ -41,7 +41,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="tabbar-camera-icon" selectedImage="tabbar-camera-icon" id="Nwr-rV-IoO">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
@@ -203,13 +203,14 @@
                                                             <action selector="following:" destination="j8B-e0-nT7" eventType="touchUpInside" id="ZBB-U4-yxr"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M14-ir-G8L">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M14-ir-G8L">
                                                         <rect key="frame" x="341" y="18" width="24" height="24"/>
                                                         <animations/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="azb-pY-H2A"/>
                                                             <constraint firstAttribute="width" constant="24" id="uNz-uZ-WPc"/>
                                                         </constraints>
+                                                        <color key="tintColor" red="0.18823529410000001" green="0.41176470590000003" blue="0.65490196079999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" image="close"/>
                                                         <connections>
                                                             <action selector="close:" destination="j8B-e0-nT7" eventType="touchUpInside" id="2sU-93-lXT"/>
@@ -554,55 +555,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LY9-Tc-aVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="811.5" y="320.5"/>
-        </scene>
-        <!--Post Photo View Controller-->
-        <scene sceneID="tzB-wv-0Cn">
-            <objects>
-                <viewController storyboardIdentifier="camera" id="efD-QZ-dVO" customClass="PostPhotoViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zbQ-EG-6Ms"/>
-                        <viewControllerLayoutGuide type="bottom" id="SFf-b4-vQJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5GW-M0-dpr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuW-gt-rT2">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="x8O-jq-HPo"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="eMh-dP-JAU"/>
-                                    <barButtonItem title="相册" id="dg5-aL-sDN">
-                                        <connections>
-                                            <action selector="selectPhotoVC:" destination="efD-QZ-dVO" id="lR7-vC-ki1"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ase-yT-Np2"/>
-                                    <barButtonItem title="拍照" id="k6G-eo-EPS">
-                                        <connections>
-                                            <action selector="selectTakePhotoVC:" destination="efD-QZ-dVO" id="5cV-kT-mFi"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YwD-Vo-MQr"/>
-                                </items>
-                            </toolbar>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="uuW-gt-rT2" secondAttribute="trailing" id="FK1-rA-MDE"/>
-                            <constraint firstItem="SFf-b4-vQJ" firstAttribute="top" secondItem="uuW-gt-rT2" secondAttribute="bottom" id="Gg5-ZN-3Nf"/>
-                            <constraint firstItem="uuW-gt-rT2" firstAttribute="leading" secondItem="5GW-M0-dpr" secondAttribute="leading" id="Wlc-hI-Qhd"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gAO-sC-Zzd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1443.5" y="320.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="khv-DG-Cuf">
@@ -1354,7 +1306,7 @@
         <image name="addphoto-plus" width="73" height="73"/>
         <image name="back-arrow" width="10" height="17"/>
         <image name="blue-check" width="16" height="12"/>
-        <image name="close" width="24" height="24"/>
+        <image name="close" width="30" height="30"/>
         <image name="cp-context-fb" width="12" height="12"/>
         <image name="direct" width="26" height="26"/>
         <image name="feed_comment_icon" width="24" height="24"/>

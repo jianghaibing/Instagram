@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegestViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class RegestViewController: UITableViewController,DBCameraViewControllerDelegate {
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
@@ -73,73 +73,50 @@ class RegestViewController: UITableViewController,UIImagePickerControllerDelegat
     }
     
     @IBAction func choosePhoto(sender: UIButton) {
-        let imagePickerVC = UIImagePickerController()
-        imagePickerVC.delegate = self
         
-        imagePickerVC.modalPresentationStyle = .CurrentContext
-        imagePickerVC.allowsEditing = true
-        imagePickerVC.navigationBar.tintColor = UIColor.whiteColor()
-        imagePickerVC.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
-        imagePickerVC.navigationBar.barTintColor = globalColor
+        let cameraController = DBCameraViewController.initWithDelegate(self)
+        cameraController.forceQuadCrop = true
         
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        actionSheet.view.tintColor = globalColor
-        let takePhotoAction = UIAlertAction(title: "拍照", style: UIAlertActionStyle.Default) { (action) -> Void in
-            imagePickerVC.sourceType = .Camera
-            self.presentViewController(imagePickerVC, animated: true, completion: nil)
-        }
-        let photoAction = UIAlertAction(title: "相册", style: .Default) { (action) -> Void in
-            imagePickerVC.sourceType = .SavedPhotosAlbum
-            self.presentViewController(imagePickerVC, animated: true, completion: nil)
-        }
-        let cancel = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
-        actionSheet.addAction(takePhotoAction)
-        actionSheet.addAction(photoAction)
-        actionSheet.addAction(cancel)
+        let container = DBCameraContainerViewController(delegate: self)
+        container.cameraViewController = cameraController
+        container.setFullScreenMode()
         
-        if UIImagePickerController.isCameraDeviceAvailable(.Rear) || UIImagePickerController.isCameraDeviceAvailable(.Front){
-        self.presentViewController(actionSheet, animated: true, completion: nil)
-        }else{
-            imagePickerVC.sourceType = .SavedPhotosAlbum
-            self.presentViewController(imagePickerVC, animated: true, completion: nil)
-        }
+        let nav = BaseNavgationController(rootViewController: container)
+        nav.navigationBarHidden = true
+        UIApplication.sharedApplication().statusBarHidden = true
+        self.presentViewController(nav, animated: true, completion: nil)
+        
         
     }
     
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func camera(cameraViewController: AnyObject!, didFinishWithImage image: UIImage!, withMetadata metadata: [NSObject : AnyObject]!) {
+        let hud = MBProgressHUD.showHUDAddedTo(cameraViewController.view, animated: true)
         
-        let hud = MBProgressHUD.showHUDAddedTo(picker.view, animated: true)
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage{
-            let imageData = UIImageJPEGRepresentation(image, 0.7)
-            imageFile = AVFile(name: "avatar.jpg", data: imageData)
-            imageFile!.saveInBackgroundWithBlock({ (sucessed, error) -> Void in
-                if sucessed == true {
-                    hud.hide(true)
-                    self.addPhotoButton.setImage(image, forState: .Normal)
-                    self.onePhotoLabel.hidden = true
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }else{
-                    hud.hide(true)
-                    MBProgressHUD.showErrortoView(picker.view, with: error.localizedDescription)
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            })
-        }
+        let imageData = UIImageJPEGRepresentation(image, 0.7)
+        imageFile = AVFile(name: "avatar.jpg", data: imageData)
+        imageFile!.saveInBackgroundWithBlock({ (sucessed, error) -> Void in
+            if sucessed == true {
+                hud.hide(true)
+                self.addPhotoButton.setImage(image, forState: .Normal)
+                self.onePhotoLabel.hidden = true
+                UIApplication.sharedApplication().statusBarHidden = false
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }else{
+                hud.hide(true)
+                MBProgressHUD.showErrortoView((cameraViewController?.view)!, with: error.localizedDescription)
+                UIApplication.sharedApplication().statusBarHidden = false
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        })
+        
 
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func dismissCamera(cameraViewController: AnyObject!) {
+        UIApplication.sharedApplication().statusBarHidden = false
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
-    */
     
     deinit{
         NSNotificationCenter.defaultCenter().removeObserver(self)
