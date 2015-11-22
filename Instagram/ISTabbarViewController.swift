@@ -36,8 +36,7 @@ class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,DBCa
     func camera(cameraViewController: AnyObject!, didFinishWithImage image: UIImage!, withMetadata metadata: [NSObject : AnyObject]!) {
         let post = AVObject(className: "Post")
         post["postUserID"] = AVUser.currentUser().objectId
-        
-        
+  
         let imageData = UIImageJPEGRepresentation(image, 0.7)
         let imageFile = AVFile(name: "post.jpg", data: imageData)
         let hud = MBProgressHUD.showHUDAddedTo(cameraViewController.view, animated: true)
@@ -55,7 +54,6 @@ class ISTabbarViewController: UITabBarController,UITabBarControllerDelegate,DBCa
                             let homeVC = selectedViewController.childViewControllers[0] as! HomeViewController
                             hud.hide(true)
                             homeVC.requestNewPost()
-                            homeVC.tableView.reloadData()
                             self.dismissViewControllerAnimated(true, completion: nil)
                         }
                        

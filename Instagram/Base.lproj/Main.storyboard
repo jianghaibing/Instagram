@@ -117,7 +117,7 @@
         <scene sceneID="1Qd-9f-qaa">
             <objects>
                 <tableViewController id="qpg-BK-xI3" customClass="HomeViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="273" sectionHeaderHeight="28" sectionFooterHeight="28" id="HUU-XR-Foi">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="273" sectionHeaderHeight="28" sectionFooterHeight="28" id="HUU-XR-Foi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -265,10 +265,10 @@
                                 <rect key="frame" x="0.0" y="322" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Oif-qe-A3T" id="QTM-ZM-stz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="idu-Ya-pgs">
+                                        <view alpha="0.94999999999999996" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idu-Ya-pgs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -324,7 +324,7 @@
                                 <rect key="frame" x="0.0" y="382" width="375" height="235"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="I3Z-hl-Dx0" id="Wan-de-z4L">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="235"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7J9-4I-aOF">
@@ -768,7 +768,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="290" height="35"/>
                                                                 <animations/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                                             </textField>
                                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BH7-lK-GUu">
                                                                 <rect key="frame" x="290" y="0.0" width="55" height="35"/>
@@ -1332,6 +1332,6 @@
         <image name="triangle" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MSY-wX-Tjc"/>
+        <segue reference="VEh-MV-obw"/>
     </inferredMetricsTieBreakers>
 </document>

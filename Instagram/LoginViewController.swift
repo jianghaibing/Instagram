@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
+class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource,UITextFieldDelegate {
     @IBOutlet weak var background: JSAnimatedImagesView!
     @IBOutlet weak var centerX: NSLayoutConstraint!
     @IBOutlet weak var registerButton: UIButton!
@@ -33,6 +33,7 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
         background.dataSource = self
         loginView.hidden = true
         emailTextField.becomeFirstResponder()
+        passwordTextField.delegate = self
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "emailTextDidChange:", name: UITextFieldTextDidChangeNotification, object: emailTextField)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "emailTextDidChange:", name: UITextFieldTextDidChangeNotification, object: passwordTextField)
         
@@ -105,11 +106,34 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource {
                 }else {
                     print(error)
                     hud.hide(true)
-                    MBProgressHUD.showErrortoView(self.view, with: error.localizedDescription)
+                    MBProgressHUD.showErrortoView(self.view, with: "账号或密码错误，请重试")
                 }
             })
         }
     }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == passwordTextField {
+            let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
+            AVUser.logInWithUsernameInBackground(userNameTextField.text, password: passwordTextField.text, block: { (user, error) -> Void in
+                if user != nil {
+                    hud.hide(true)
+                    self.performSegueWithIdentifier("showHome", sender: self)
+                }else {
+                    print(error)
+                    hud.hide(true)
+                    MBProgressHUD.showErrortoView(self.view, with: "账号或密码错误，请重试")
+                }
+            })
+            return true
+        }else{
+            return false
+        }
+        
+        
+    }
+    
     @IBAction func forgotPassword(sender: UIButton) {
        
     }

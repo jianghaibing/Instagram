@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UITableViewController,FollowingCellDelegate {
 
     var posts:[AVObject]?
+    var postUsers:[AVUser] = []
     @IBOutlet weak var headerTableView: UITableView!
     var users:[AVUser]?
     var avatars:[UIImageView]?
@@ -59,13 +60,13 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             if error == nil {
                 self.users = objects as? [AVUser]
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    self.tableView.mj_header.endRefreshing()
+//                    self.tableView.mj_header.endRefreshing()
                     self.layoutFollowingView()
                     self.headerTableView.reloadData()
                 })
             }else{
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                    self.tableView.mj_header.endRefreshing()
+//                    self.tableView.mj_header.endRefreshing()
                     MBProgressHUD.showErrortoView(self.view, with: error.localizedDescription)
                 })
             }
@@ -89,8 +90,16 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
         query.orderByDescending("createdAt")
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             if error == nil{
-                
-                self.posts = objects as? [AVObject]
+                self.postUsers.removeAll(keepCapacity: true)
+                if let objects = objects as? [AVObject]{
+                self.posts = objects
+                for post in objects {
+                    let postUserID = post["postUserID"] as! String
+                    let query = AVUser.query()
+                    let user = query.getObjectWithId(postUserID) as! AVUser
+                    self.postUsers.append(user)
+                }
+                }
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                     self.tableView.mj_header.endRefreshing()
                     self.tableView.reloadData()
@@ -127,7 +136,8 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
             if error == nil{
                 if objects.count == 0 {
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                        MBProgressHUD.showErrortoView(self.view.window!, with: "没有更多图片了")
+                        self.noticeOnlyText("没有更多图片了")
+                        self.performSelector("clearNote", withObject: self, afterDelay: 1)
                         self.tableView.mj_footer.endRefreshing()
                     })
                     return
@@ -136,6 +146,13 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
                 let objects = objects as! [AVObject]
                 if self.posts != nil {
                    self.posts! += objects
+                    for post in objects {
+                        let postUserID = post["postUserID"] as! String
+                        let query = AVUser.query()
+                        let user = query.getObjectWithId(postUserID) as! AVUser
+                        self.postUsers.append(user)
+                    }
+
                 }
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -151,6 +168,10 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
                 })
             }
         }
+    }
+    
+    func clearNote(){
+        self.clearAllNotice()
     }
     
     func  layoutFollowingView(){
@@ -203,7 +224,7 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
                 cell.avatar.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "anonymousUser"))
             }else{
                 cell.avatar.image = UIImage(named: "anonymousUser")
-                }
+            }
             
             cell.nameLabel.text = user.username
             }
@@ -224,12 +245,30 @@ class HomeViewController: UITableViewController,FollowingCellDelegate {
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if tableView != headerTableView{
-        let header = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! HeaderViewCell
-        return header
-        }else{
-        let header = tableView.dequeueReusableCellWithIdentifier("topCell")
+            let header = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! HeaderViewCell
+            if let posts = posts{
+                let post = posts[section]
+                let user = postUsers[section]
+                
+                let imageFile = user["avatar"] as? AVFile
+                let date = post["createdAt"] as! NSDate
+                let dateStr = StringConvertTool.dateStringConverter(date)
+                if let imageFile = imageFile{
+                    let url = imageFile.url
+                    header.avatar.sd_setImageWithURL(NSURL(string: url), placeholderImage: UIImage(named: "anonymousUser"))
+                }else{
+                    header.avatar.image = UIImage(named: "anonymousUser")
+                }
+                header.nameLabel.text = user.username
+                header.dateLabel.text = dateStr
+                
+            }
             
-        return header
+            return header
+        }else{
+            let header = tableView.dequeueReusableCellWithIdentifier("topCell")
+            
+            return header
         }
     }
     

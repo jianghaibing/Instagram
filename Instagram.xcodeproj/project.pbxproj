@@ -22,6 +22,8 @@
 		096AE4FA1BEBA9AE00ECD6BD /* PodFile in Resources */ = {isa = PBXBuildFile; fileRef = 096AE4F91BEBA9AE00ECD6BD /* PodFile */; };
 		096AE5031BEBB1F600ECD6BD /* ISTabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096AE5021BEBB1F600ECD6BD /* ISTabbarViewController.swift */; };
 		096AE5051BEBB7B100ECD6BD /* ISTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096AE5041BEBB7B100ECD6BD /* ISTabBar.swift */; };
+		098AF4971C01A34B004D7247 /* StringConvertTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AF4961C01A34B004D7247 /* StringConvertTool.swift */; };
+		098AF4991C01AF25004D7247 /* SwiftNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AF4981C01AF25004D7247 /* SwiftNotice.swift */; };
 		098F170E1BEE590C0073CCFB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F170D1BEE590C0073CCFB /* ProfileViewController.swift */; };
 		098F172A1BEF4EB00073CCFB /* Align.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F17151BEF4EB00073CCFB /* Align.swift */; };
 		098F172B1BEF4EB00073CCFB /* Coefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F17171BEF4EB00073CCFB /* Coefficients.swift */; };
@@ -67,6 +69,8 @@
 		096AE4FB1BEBACCB00ECD6BD /* Instagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		096AE5021BEBB1F600ECD6BD /* ISTabbarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISTabbarViewController.swift; sourceTree = "<group>"; };
 		096AE5041BEBB7B100ECD6BD /* ISTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISTabBar.swift; sourceTree = "<group>"; };
+		098AF4961C01A34B004D7247 /* StringConvertTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConvertTool.swift; sourceTree = "<group>"; };
+		098AF4981C01AF25004D7247 /* SwiftNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNotice.swift; sourceTree = "<group>"; };
 		098F170D1BEE590C0073CCFB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		098F17151BEF4EB00073CCFB /* Align.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Align.swift; sourceTree = "<group>"; };
 		098F17161BEF4EB00073CCFB /* Cartography.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cartography.h; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			children = (
 				0916A3271BECF6F200946EB1 /* Constant.swift */,
 				09FBDAF31BF2445D00F7C232 /* ExtensionMBprogressHud.swift */,
+				098AF4961C01A34B004D7247 /* StringConvertTool.swift */,
 			);
 			name = Tool;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 		098F17131BEF4E790073CCFB /* 3thLib */ = {
 			isa = PBXGroup;
 			children = (
+				098AF4981C01AF25004D7247 /* SwiftNotice.swift */,
 				098F17141BEF4EB00073CCFB /* Cartography */,
 			);
 			name = 3thLib;
@@ -425,6 +431,7 @@
 				096AE4ED1BEBA8ED00ECD6BD /* Instagram.xcdatamodeld in Sources */,
 				098F172B1BEF4EB00073CCFB /* Coefficients.swift in Sources */,
 				098F170E1BEE590C0073CCFB /* ProfileViewController.swift in Sources */,
+				098AF4991C01AF25004D7247 /* SwiftNotice.swift in Sources */,
 				09FBDAF41BF2445D00F7C232 /* ExtensionMBprogressHud.swift in Sources */,
 				098F172F1BEF4EB00073CCFB /* ConstraintGroup.swift in Sources */,
 				098F173B1BEF4EB00073CCFB /* Size.swift in Sources */,
@@ -436,6 +443,7 @@
 				098F17361BEF4EB00073CCFB /* Extensions.swift in Sources */,
 				098F173F1BEF58680073CCFB /* HeaderViewCell.swift in Sources */,
 				0916A32A1BECF79100946EB1 /* BaseNavgationController.swift in Sources */,
+				098AF4971C01A34B004D7247 /* StringConvertTool.swift in Sources */,
 				098F17321BEF4EB00073CCFB /* Distribute.swift in Sources */,
 				098F17391BEF4EB00073CCFB /* Priority.swift in Sources */,
 				094731501BEF8931008513AC /* FollowingCell.swift in Sources */,
