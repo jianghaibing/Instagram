@@ -833,6 +833,9 @@
                                                         <color key="tintColor" red="0.17254901959999999" green="0.2666666667" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <state key="normal" title="用Facebook登录" image="cp-context-fb"/>
+                                                        <connections>
+                                                            <action selector="fbLogin:" destination="PZM-gm-wGe" eventType="touchUpInside" id="IrM-9M-au6"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <animations/>

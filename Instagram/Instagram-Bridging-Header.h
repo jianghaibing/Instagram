@@ -1,4 +1,6 @@
 #import <AVOSCloud/AVOSCloud.h>
+#import <LeanCloudSocial/AVOSCloudSNS.h>
+#import <LeanCloudSocial/AVUser+SNS.h>
 #import <JSAnimatedImagesView/JSAnimatedImagesView.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "Cartography.h"

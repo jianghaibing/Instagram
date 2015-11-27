@@ -322,7 +322,7 @@ typedef NS_ENUM(int, AVReportPolicy) {
  @return 返回键值
  */
 
-+ (NSString *)getConfigParams:(NSString *)key;
++ (id)getConfigParams:(NSString *)key;
 
 /** 从[NSUserDefaults standardUserDefaults]获取缓存的在线参数
  @return (NSDictionary *).

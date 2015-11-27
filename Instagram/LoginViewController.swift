@@ -25,7 +25,7 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource,UITex
     @IBOutlet weak var loginActionButton: UIButton!
     
     var isLogout:Bool = false//如果是退出状态，设置tab到登录界面
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,16 +47,16 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource,UITex
         UIApplication.sharedApplication().statusBarHidden = true
         self.navigationController?.navigationBarHidden = true
     }
-
+    
     func emailTextDidChange(noti:NSNotification){
         if noti.object as! UITextField == emailTextField{
-        if emailTextField.text == ""{
-            fbButton_reg.hidden = false
-            nextButton.hidden = true
-        }else{
-            fbButton_reg.hidden = true
-            nextButton.hidden = false
-        }
+            if emailTextField.text == ""{
+                fbButton_reg.hidden = false
+                nextButton.hidden = true
+            }else{
+                fbButton_reg.hidden = true
+                nextButton.hidden = false
+            }
         }
         if noti.object as! UITextField == passwordTextField{
             if passwordTextField.text == "" {
@@ -94,8 +94,37 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource,UITex
     }
     
     @IBAction func fbLogin(sender: UIButton) {
+        loginWithWeibo()
     }
+    
+    func loginWithWeibo(){
+        AVOSCloudSNS.setupPlatform(.SNSSinaWeibo, withAppKey: "1914464816", andAppSecret: "99e0f3689b54ece0c12529b631c5b15b", andRedirectURI: "")
+        AVOSCloudSNS.loginWithCallback({ (object, error) -> Void in
+            
+            if error == nil {
+                let object = object as! [NSObject:AnyObject]
+                AVUser.loginWithAuthData(object, platform: AVOSCloudSNSPlatformWeiBo, block: { (user, error) -> Void in
+                    if error == nil {
+                        let user = user as AVUser
+                        if user["avatar"] == nil {
+                            let urlStr = object["avatar"] as! String
+                            let avatar = AVFile(URL: urlStr)
+                            user["avatar"] = avatar
+                        }
+                        user.username = object["username"] as! String
+                        user.saveInBackground()
+                        self.performSegueWithIdentifier("showHome", sender: self)
+                    }else{
+                        print("登录失败")
+                    }
+                })
+            }else{
+                print("授权失败")
+            }
+            }, toPlatform: .SNSSinaWeibo)
 
+    }
+    
     @IBAction func loginButtonAction(sender: UIButton) {
         let hud = MBProgressHUD.showHUDAddedTo(view, animated: true)
         if sender.titleLabel?.text != ""{
@@ -135,21 +164,22 @@ class LoginViewController: UIViewController,JSAnimatedImagesViewDataSource,UITex
     }
     
     @IBAction func forgotPassword(sender: UIButton) {
-       
+        
     }
     
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "regester"{
-        let regVC = segue.destinationViewController as! RegestViewController
-        regVC.emailSting = emailTextField.text!
+            let regVC = segue.destinationViewController as! RegestViewController
+            regVC.emailSting = emailTextField.text!
         }
     }
     
-
+    
     deinit{
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }

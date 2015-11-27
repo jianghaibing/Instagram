@@ -1,12 +1,36 @@
 PODS:
-  - AVOSCloud (3.1.6.4)
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AVOSCloud (3.1.6.7)
   - DBCamera (2.4.1):
     - GPUImage (~> 0.1)
   - GPUImage (0.1.7)
   - JSAnimatedImagesView (1.0.0):
     - MSWeakTimer (~> 1.0)
+  - LeanCloudSocial (0.0.7):
+    - AFNetworking (~> 2.0)
+    - AVOSCloud (~> 3.1)
   - MBProgressHUD (0.9.1)
-  - MJRefresh (3.0.4)
+  - MJRefresh (3.0.6)
   - MSWeakTimer (1.1.0)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
@@ -16,17 +40,20 @@ DEPENDENCIES:
   - AVOSCloud
   - DBCamera
   - JSAnimatedImagesView
+  - LeanCloudSocial
   - MBProgressHUD
   - MJRefresh
   - SDWebImage
 
 SPEC CHECKSUMS:
-  AVOSCloud: cb800543837fd747cc4621dc64e1384f3e5135a4
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AVOSCloud: 7af6267747894eadfd14560db08ea99a51b57fc0
   DBCamera: 7a4343a541e1264610f9f33176552b93170a843e
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   JSAnimatedImagesView: d5c5f561280171ce13f1f08ba9834c47a1f27bfc
+  LeanCloudSocial: a20bb54efe77e66263d9943609a36896989af175
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJRefresh: c95f0d541606ef584dab3fbeda28f4f32b4aca6e
+  MJRefresh: df419e2393f9020bcd340c552e8f0cf700073f32
   MSWeakTimer: 9426150f933b80ed3acf3f6d228e4b61f0e303c8
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
 

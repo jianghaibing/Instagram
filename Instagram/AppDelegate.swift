@@ -23,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        return AVOSCloudSNS.handleOpenURL(url)
+    }
+    
     func chooseRootViewController(){
         let currentUser = AVUser.currentUser()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -1,4 +1,5 @@
 pod 'AVOSCloud'
+pod 'LeanCloudSocial'
 pod 'JSAnimatedImagesView'
 pod 'MBProgressHUD'
 pod 'SDWebImage'

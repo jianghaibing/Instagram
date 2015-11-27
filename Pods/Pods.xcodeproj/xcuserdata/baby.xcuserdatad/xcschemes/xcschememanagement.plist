@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DBCamera.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -15,6 +20,11 @@
 			<false/>
 		</dict>
 		<key>JSAnimatedImagesView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LeanCloudSocial.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,42 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2C752125238947414BF6D3B978D3BFD3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3299C6E72E4366B92F7A3D340233E6CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>51525F27418BB990B86B7F53A509AA96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5352D432641F0656C90741034E32F31E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>63B84225745A871D14078C89CAE85523</key>
+		<key>89ADBD4DF247692FEE486719B77CFB9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6AB12A9CB25345384752462E487007A8</key>
+		<key>91292912703A891CB029059A4F02892F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7AA5C79F8028584F0A6B2E7E818AB6A6</key>
+		<key>A676B2BC244C2A561E73CE6FE93AFBA8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87AED8373BDB53DD92ECE9D54974E370</key>
+		<key>BFBC33BAAC4F4CD5CB683786CA05DEFF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A514F6A28AD9CC434B16A2D75005BB73</key>
+		<key>CC8B904CCD6A225D7AA1CAAEC06F3E3F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F66BD3B4DDDB0630E9A70E2655BCD6F2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F6F69054E2432829015D41A7CDE0DD76</key>
+		<key>DA70AD362AF5C6855315DA3B202E2007</key>
 		<dict>
 			<key>primary</key>
 			<true/>
